@@ -1,0 +1,40 @@
+// variables
+
+/* FONTS */
+$font-heading: 'Work Sans', serif;
+$font-text: 'Work Sans', sans-serif;
+$font-serif: 'Playfair Display', serif;
+
+/* BREAKPOINTS */
+$mobile: 767px;
+$tablet: 991px;
+$desktop: $tablet + 1px;
+
+/* COLORS */
+$background-color: #f5f5f5;
+$color-primary: #00699b;
+$color-white: #fff;
+$color-black: #000;
+$color-logo: #8e9c90;
+$color-brown: #7b8d67;
+$color-grey: #4d4d4d;
+$color-grey-light: #a4a4a4;
+// mixins
+
+@mixin on-mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin on-tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
