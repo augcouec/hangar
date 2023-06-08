@@ -9,7 +9,6 @@
           <nuxt-link to="/services">Nos services</nuxt-link>
           <nuxt-link to="/reals">Réalisations</nuxt-link>
           <nuxt-link to="/cars">Nos véhicules</nuxt-link>
-          <nuxt-link to="/about">À propos</nuxt-link>
           <nuxt-link to="/blog">Blog</nuxt-link>
           <nuxt-link to="/contact">Contact</nuxt-link>
         </ul>
