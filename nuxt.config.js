@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ['@/assets/scss/global.scss'],
-  buildModules: ['@nuxtjs/google-fonts'],
+
+  modules: ['@nuxtjs/google-fonts'],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -13,8 +15,8 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      'Work+Sans': true,
-      'Playfair+Display': true,
+      'Work+Sans': [300, 500, 600],
+      'Playfair+Display': [400],
     },
   },
 });

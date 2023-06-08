@@ -1,30 +1,44 @@
 <template>
   <div class="container">
-    <h3>Nos Services</h3>
+    <h3>{{ title }}</h3>
 
     <div class="content_container">
       <div class="text_container">
-        <h4>Découvrez tous nos services</h4>
+        <h4>{{ subtitle }}</h4>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
+          {{ description }}
         </p>
-        <nuxt-link to="/services">Découvrez nos Services</nuxt-link>
+        <nuxt-link to="/services">{{ bt_text }}</nuxt-link>
       </div>
       <div class="img_container">
-        <img src="../../assets/AGENCEPOLY-04988.jpg" alt="" />
+        <img :src="image_ser" alt="" />
       </div>
     </div>
   </div>
 </template>
-<script></script>
+<script setup>
+const { data, pending, error, refresh } = await useAsyncData('stories', () =>
+  $fetch(
+    'https://api.storyblok.com/v2/cdn/stories?token=y4M1FLX1NYiAH6AVxnwdUgtt'
+  )
+);
+
+const res = data._rawValue.stories;
+const dataclean = res.filter((story) => story.name === 'service')[0].content;
+const title = dataclean.title;
+const subtitle = dataclean.subtitle;
+const description = dataclean.description;
+const bt_text = dataclean.bt_text;
+const image_ser = dataclean.img.filename;
+</script>
 <style lang="scss" scoped>
 .container {
   height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 0 10vh 0;
+
   h3 {
     text-transform: uppercase;
     color: $color-grey;
@@ -54,6 +68,7 @@
   p {
     color: $color-grey-light;
     width: 60%;
+    font-family: $font-text;
   }
   a {
     text-decoration: none;
@@ -69,6 +84,8 @@
   width: 45%;
   img {
     width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
   }
 }
 </style>

@@ -1,18 +1,21 @@
 <template>
   <div class="container">
-    <h3>{{ title_real }}</h3>
+    <h3>{{ title_cars }}</h3>
 
     <div class="content_container">
+      <div class="text_container">
+        <h4>{{ subtitle_cars }}</h4>
+        <p>{{ description_cars }}</p>
+      </div>
+
       <div class="img_container">
         <swiper-container
-          slides-per-view="1.5"
+          slides-per-view="3"
           spaceBetween="10"
-          reverseDirection="true"
-          initialSlide="3"
           mousewheel-force-to-axis="true"
         >
           <swiper-slide
-            v-for="(image, index) in images"
+            v-for="(image, index) in images_2"
             :key="index"
             :value="image"
             ><img :src="image" alt=""
@@ -20,10 +23,8 @@
         </swiper-container>
       </div>
       <div class="text_container">
-        <h4>{{ sub_real }}</h4>
-
-        <p>{{ description_real }}</p>
-        <nuxt-link to="reals"> {{ bt_text_real }}</nuxt-link>
+        <p>{{ description_cars }}</p>
+        <nuxt-link to="cars"> {{ bt_text_cars }}</nuxt-link>
       </div>
     </div>
   </div>
@@ -37,13 +38,12 @@ const { data, pending, error, refresh } = await useAsyncData('stories', () =>
   )
 );
 const res = data._rawValue.stories;
-const datareal = res.filter((story) => story.slug === 'realisations')[0]
-  .content;
-const title_real = datareal.title;
-const sub_real = datareal.subtitle;
-const description_real = datareal.description;
-const bt_text_real = datareal.bt_text;
-const images = datareal.images.map(({ filename }) => filename);
+const datacars = res.filter((story) => story.slug === 'cars')[0].content;
+const title_cars = datacars.title;
+const subtitle_cars = datacars.subtitle;
+const description_cars = datacars.description;
+const bt_text_cars = datacars.bt_text;
+const images_2 = datacars.images.map(({ filename }) => filename);
 </script>
 
 <style lang="scss" scoped>
@@ -53,7 +53,6 @@ const images = datareal.images.map(({ filename }) => filename);
   flex-direction: column;
   justify-content: center;
   padding: 10vh 0;
-
   h3 {
     text-transform: uppercase;
     color: $color-grey;
@@ -63,45 +62,50 @@ const images = datareal.images.map(({ filename }) => filename);
 .content_container {
   margin-top: 3em;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+}
+
+a {
+  text-decoration: none;
+  padding: 1em;
+  border: 1px solid $color-grey;
+  color: $color-grey;
+  width: 31%;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1rem 0;
 }
 
 .text_container {
-  width: 45%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 100%;
   justify-content: space-between;
   h4 {
-    font-size: 2em;
+    font-size: 3em;
     font-family: $font-serif, serif;
     text-transform: capitalize;
     color: $color-grey;
-  }
-
-  a {
-    text-decoration: none;
-    padding: 1em;
-    border: 1px solid $color-grey;
-    color: $color-grey;
-    width: 60%;
-    text-align: center;
-    text-transform: uppercase;
+    width: 40%;
+    margin-bottom: 1em;
+    font-family: $font-serif;
   }
   p {
     color: $color-grey-light;
-    width: 65%;
+    width: 34%;
     text-align: justify;
     font-size: 1rem;
     margin-bottom: 1em;
-    justify-self: flex-start;
+    margin-bottom: 1rem;
     font-family: $font-text;
+    justify-self: flex-start;
   }
 }
 .img_container {
-  width: 50%;
+  margin: 2rem 0;
+  width: 100%;
   img {
     width: 100%;
   }
