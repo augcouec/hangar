@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      'Work+Sans': [300, 500, 600],
+      Raleway: [100, 300, 500, 600],
       'Playfair+Display': [400],
     },
   },
